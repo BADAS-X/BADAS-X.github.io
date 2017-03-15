@@ -359,6 +359,8 @@
 
 	.title
 	{
+        border-top: 1em;
+        margin-top: 2em;
 		margin-bottom: 2em;
 	}
 	
@@ -423,7 +425,7 @@
 	{
 		display: inline-block;
 		margin-bottom: 1em;
-		border-radius: 10%;
+		border-radius: 5%;
         width: 150px;
 	}
 
@@ -475,7 +477,8 @@
 
 	#banner
 	{
-		margin-bottom: 1em;
+        margin-top: 4em;
+		margin-bottom: 4em;
 	}
 
 /*********************************************************************************/
@@ -499,6 +502,7 @@
 		padding: 3em 50px 5em 50px;
 		background: #FFF;
 		text-align: center;
+        margin-top: 20px;
 	}
 
 /*********************************************************************************/
@@ -510,7 +514,6 @@
 		overflow: hidden;
 		margin-bottom: 3em;
 		padding-top: 2em;
-		border-top: 3px solid rgba(0,0,0,0.08);
 	}
 
 /*********************************************************************************/
@@ -521,7 +524,7 @@
 	{
 		overflow: hidden;
 		margin-bottom: 3em;
-		padding-top: 3em;
+		padding-top: 1em;
 		border-top: 3px solid rgba(0,0,0,0.08);
 	}
 
@@ -598,3 +601,4 @@ ul.style2 li {
 .style1 p {
     padding-left: 115px;
 }
+
