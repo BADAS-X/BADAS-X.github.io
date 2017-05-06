@@ -22,18 +22,17 @@ app.config.from_object(__name__)
 @app.route('/')
 def index():
     tmpl = "/index.html"
-    aboutfile = open('about.md','r',encoding='utf-8')
+    aboutfile = open('about.md', 'r', encoding='utf-8')
     about = Markup(markdown.markdown(text=aboutfile.read()))
 
     posts = []
     for fil in glob.glob('posts/*.md'):
         posts.append(
             Markup(markdown.markdown(
-            text= open(fil, 'r',encoding='utf-8').read()
+                text=open(fil, 'r', encoding='utf-8').read()
             )
             )
         )
-
 
     return render_template(tmpl, about=about, posts=posts)
 
@@ -41,6 +40,6 @@ app.debug = True
 
 
 if __name__ == "__main__":
-    app.threaded=True
-    app.debug=True
+    app.threaded = True
+    app.debug = True
     app.run()
