@@ -18,24 +18,31 @@ import sqlite3
 app.config.from_object(__name__)
 
 
+
 @app.route('/index')
 @app.route('/')
 def index():
-    tmpl = "/index.html"
+    md = markdown.Markdown(extensions=['markdown.extensions.meta'])
+
+
     aboutfile = open('about.md','r',encoding='utf-8')
-    about = Markup(markdown.markdown(text=aboutfile.read()))
+    about = Markup(md.convert(aboutfile.read()))
+    md.reset()
 
     posts = []
     for fil in glob.glob('posts/*.md'):
-        posts.append(
-            Markup(markdown.markdown(
-            text= open(fil, 'r',encoding='utf-8').read()
-            )
-            )
-        )
+        md.reset()
+
+        html = Markup(
+                md.convert(open(fil,'r',encoding='utf-8').read())
+                )
+        curpost = md.Meta
+        curpost['html'] = html
+
+        posts.append(curpost)
 
 
-    return render_template(tmpl, about=about, posts=posts)
+    return render_template("/index.html", about=about, posts=posts)
 
 app.debug = True
 

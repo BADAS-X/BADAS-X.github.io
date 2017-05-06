@@ -47,7 +47,14 @@
                 </div>
                 <ul class="style1">
                     {% for conf in posts %}
-                    <li>{{ conf }}</li>
+                    <li>
+                        <p class="date">
+                            {% set jj,mm,aaaa = conf['date'][0].split('/') %}
+                            <b>{{ jj }}</b>
+                            {{ mm }}
+                        </p>
+                        {{ conf.html }}
+                    </li>
                     {% endfor %}
                     <!--
                     <li>
@@ -59,8 +66,7 @@
                         <p class="date"><a href="#">Dec<b>31</b></a></p>
                         <h3>Sagittis diam dolor amet</h3>
                         <p><a href="#">Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie. Donec leo, vivamus fermentum nibh in augue praesent congue rutrum.</a></p>
-                    </li>
--->
+                    </li>-->
                 </ul>
             </div>
 

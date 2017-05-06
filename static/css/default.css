@@ -34,10 +34,19 @@
 		list-style: none;
 	}
 
-	ul
-	{
-		text-align: left;
-		list-style: circle inside;
+	ul {
+	    display: block;
+	    list-style-type: circle;
+	    margin-left: 2em;
+	    margin-right: 2em;
+	    text-align: left
+	}
+
+
+
+	ul li {
+	    margin-left: 1em;
+	    margin-bottom: 1em;
 	}
 
 	p
