@@ -48,6 +48,6 @@ app.debug = True
 
 
 if __name__ == "__main__":
-    app.threaded=True
-    app.debug=True
+    app.threaded = True
+    app.debug = True
     app.run()
