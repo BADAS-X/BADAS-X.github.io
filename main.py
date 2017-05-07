@@ -5,6 +5,7 @@ from flask import Markup
 from flask import url_for, render_template, redirect
 from io import BytesIO
 from flask_cas import CAS, login_required
+import datetime
 
 app = Flask(__name__)
 cas = CAS(app)
@@ -51,9 +52,13 @@ def index():
                 )
         curpost = md.Meta
         curpost['html'] = html
+        curpost['date'] = tuple(int(val) for val in (curpost['date'][0]).split('/'))
 
         posts.append(curpost)
 
+    sorted(posts, key=lambda pos: pos['date'],
+        reverse=True)
+    
 
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas)
 

@@ -1,4 +1,4 @@
-# À propos de nous
+# À propos
 
 Nous sommes des étudiants de l'[École polytechnique](https://polytechnique.edu/) intéressés par l'informatique de manière générale, et plus particulièrement par l'**algorithmique** et la **data science**.
 

@@ -12,13 +12,24 @@
                 <span>Pour la patrie, les sciences et la gloire</span>
             </div>
             -->
+            <div class="logo">
+                <img src="{{url_for('static',filename='images/logo_X.jpg')}}" />
+            </div>
             <div id="menu">
                 <ul>
                     <li><a href="#welcome">Accueil</a></li>
-                    <li><a href="#apropos">A propos de nous</a></li>
-                    <li><a href="#news">Nos actualités</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#news">Actualités</a></li>
                     <li><a href="#newsletter">Newsletter</a></li>
                     <li><a href="mailto:contact@badas.io">Contactez-nous</a></li>
+                    <li class="connexion">
+                {% if session.username %}
+                    Vous êtes connecté,</br>{{ session.username }}
+                    <a href="/cas/logout">DÉCONNEXION</a>
+                {% else %}
+                    <a href="/cas">CONNEXION</a>
+                {% endif %}
+                </li>
                 </ul>
             </div>
         </div>
@@ -27,39 +38,31 @@
                 <div class="title">
                     <img src="{{ url_for('static', filename='images/logo_BADAS.png') }}" />
                     <br />
-                    <img src="{{ url_for('static',filename='images/logo_Xhor.jpg') }}" />
                 </div>
             </div>
-            <div>
-                {% if session.username %}
-                    Vous êtes connecté, {{ session.username }}
-                {% else %}
-                    Vous êtes déconnecté.<br>
-                    <a href="/cas">CONNEXION</a>
-                {% endif %}
-            </div>
+            <!--
             <div id="banner">
                 <img src="https://c1.staticflickr.com/4/3824/11123530043_22950d4771_h.jpg" height="150" alt="technology-1">
                 <img src="{{ url_for('static', filename='images/screen.jpg') }}" height="150">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Paris_%2875%29_%C3%89cole_Polytechnique.JPG/1280px-Paris_%2875%29_%C3%89cole_Polytechnique.JPG" height="150">
             </div>
-
+            -->
             <div id="apropos">
                 {{ about }}
             </div>
 
             <div id="news">
                 <div class="title">
-                    <h2>Nos actualités</h2>
+                    <h2>Actualités</h2>
                     <span class="byline">Pour être informé directement dans votre boîte mail, inscrivez-vous à notre <a href="#newsletter">newsletter</a></span>
                 </div>
                 <ul class="style1">
                     {% for conf in posts %}
                     <li>
                         <p class="date">
-                            {% set jj,mm,aaaa = conf['date'][0].split('/') %}
+                            {% set jj,mm,aaaa = conf['date'] %}
                             <b>{{ jj }}</b>
-                            {{ moisLettres[mm|int] }}
+                            {{ moisLettres[mm] }}
                         </p>
                         {{ conf.html }}
                     </li>
@@ -241,10 +244,15 @@
                 <!--End mc_embed_signup-->
             </div>
 
+            <div>
+                <img src="{{ url_for('static',filename='images/logo_Xhor.jpg') }}" />
+            </div>
+            <!--
             <div id="copyright">
                 <span>&copy; Untitled. All rights reserved.</span>
                 <span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</span>
             </div>
+            -->
         </div>
     </div>
 </body>
