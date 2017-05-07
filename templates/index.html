@@ -5,11 +5,13 @@
 <body>
     <div id="page" class="container">
         <div id="header">
+            <!--
             <div id="logo">
-                <img src="{{ url_for('static',filename='images/logo-X.jpg') }}" />
-                <h1><a href="#">BADAS</a></h1>
+                <img src="{{ url_for('static',filename='images/logo_X.jpg') }}" />
+                <br>
                 <span>Pour la patrie, les sciences et la gloire</span>
             </div>
+            -->
             <div id="menu">
                 <ul>
                     <li><a href="#welcome">Accueil</a></li>
@@ -23,12 +25,18 @@
         <div id="main">
             <div id="welcome">
                 <div class="title">
-                    <h2>Binet Algorithmes et DAta Science</h2>
-                    <span class="byline">de l'Ecole Polytechnique</span>
+                    <img src="{{ url_for('static', filename='images/logo_BADAS.png') }}" />
+                    <br />
+                    <img src="{{ url_for('static',filename='images/logo_Xhor.jpg') }}" />
                 </div>
             </div>
             <div>
-                <a href="/cas">CONNEXION</a>
+                {% if session.username %}
+                    Vous êtes connecté, {{ session.username }}
+                {% else %}
+                    Vous êtes déconnecté.<br>
+                    <a href="/cas">CONNEXION</a>
+                {% endif %}
             </div>
             <div id="banner">
                 <img src="https://c1.staticflickr.com/4/3824/11123530043_22950d4771_h.jpg" height="150" alt="technology-1">
@@ -51,7 +59,7 @@
                         <p class="date">
                             {% set jj,mm,aaaa = conf['date'][0].split('/') %}
                             <b>{{ jj }}</b>
-                            {{ mm }}
+                            {{ moisLettres[mm|int] }}
                         </p>
                         {{ conf.html }}
                     </li>

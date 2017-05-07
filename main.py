@@ -17,7 +17,20 @@ app.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
 import sqlite3
 app.config.from_object(__name__)
 
-
+moisLettres = {
+    1:'janvier',
+    2:'février',
+    3:'mars',
+    4:'avril',
+    5:'mai',
+    6:'juin',
+    7:'juillet',
+    8:'août',
+    9:'septembre',
+    10:'octobre',
+    11:'novembre',
+    12:'décembre'
+}
 
 @app.route('/index')
 @app.route('/')
@@ -42,7 +55,7 @@ def index():
         posts.append(curpost)
 
 
-    return render_template("/index.html", about=about, posts=posts)
+    return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas)
 
 app.debug = True
 

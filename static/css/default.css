@@ -3,6 +3,10 @@
 		height: 100%;
 	}
 
+	html {
+		width: 100%;
+	}
+
 	body
 	{
 		margin: 0px;
@@ -11,6 +15,7 @@
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 12pt;
 		font-weight: 300;
+		width: 90%;
 		color: #444444;
 	}
 
@@ -36,18 +41,17 @@
 
 	ul {
 	    display: block;
-	    list-style-type: circle;
+	    list-style-type: disc;
 	    margin-left: 2em;
 	    margin-right: 2em;
 	    text-align: left
 	}
 
-
-
 	ul li {
 	    margin-left: 1em;
 	    margin-bottom: 1em;
 	}
+
 
 	p
 	{
@@ -125,9 +129,8 @@
 		padding: 0;
 		width: 80%;
 		overflow: hidden;
-		list-style-type: circle;
+		list-style: none;
 		text-align: left;
-		color: #631818;
 	}
 
 	ul.style1 li
