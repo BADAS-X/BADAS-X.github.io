@@ -15,6 +15,7 @@ app.config['CAS_LOGIN_ROUTE'] = '/cas'
 app.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
 
 
+
 import sqlite3
 app.config.from_object(__name__)
 
@@ -58,7 +59,7 @@ def index():
 
     sorted(posts, key=lambda pos: pos['date'],
         reverse=True)
-    
+
 
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas)
 
@@ -67,5 +68,5 @@ app.debug = True
 
 if __name__ == "__main__":
     app.threaded = True
-    app.debug = True
+    app.debug = False
     app.run()
