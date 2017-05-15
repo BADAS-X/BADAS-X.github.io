@@ -7,17 +7,17 @@ from io import BytesIO
 from flask_cas import CAS, login_required
 import datetime
 
-app = Flask(__name__)
-cas = CAS(app)
-app.config['CAS_SERVER'] = "https://cas.binets.fr/"
-app.config['CAS_AFTER_LOGIN'] = 'index'
-app.config['CAS_LOGIN_ROUTE'] = '/cas'
-app.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
+application = Flask(__name__)
+cas = CAS(application)
+application.config['CAS_SERVER'] = "https://cas.binets.fr/"
+application.config['CAS_AFTER_LOGIN'] = 'index'
+application.config['CAS_LOGIN_ROUTE'] = '/cas'
+application.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
 
 
 
 import sqlite3
-app.config.from_object(__name__)
+application.config.from_object(__name__)
 
 moisLettres = {
     1:'janvier',
@@ -34,8 +34,8 @@ moisLettres = {
     12:'décembre'
 }
 
-@app.route('/index')
-@app.route('/')
+@application.route('/index')
+@application.route('/')
 def index():
     md = markdown.Markdown(extensions=['markdown.extensions.meta'])
 
@@ -63,10 +63,10 @@ def index():
 
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas)
 
-app.debug = True
+application.debug = True
 
 
 if __name__ == "__main__":
-    app.threaded = True
-    app.debug = False
-    app.run()
+    application.threaded = True
+    application.debug = False
+    application.run()
