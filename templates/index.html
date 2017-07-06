@@ -24,7 +24,7 @@
                     <li><a href="mailto:contact@badas.io">Contactez-nous</a></li>
                     <li class="connexion">
                 {% if session.username %}
-                    Vous êtes connecté,</br>{{ session.username }}
+                    Vous êtes connecté,</br>{{ session.attributes['cas:displayName'] }}
                     <a href="/cas/logout">DÉCONNEXION</a>
                 {% else %}
                     <a href="/cas">CONNEXION</a>
