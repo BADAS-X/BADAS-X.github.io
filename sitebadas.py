@@ -4,7 +4,7 @@ from flask import Flask, request, escape, abort
 from flask import Markup
 from flask import url_for, render_template, redirect
 from io import BytesIO
-from flask_cas import CAS, login_required
+from flask_cas import CAS, login_required, login, logout
 import datetime
 
 application = Flask(__name__)
@@ -12,8 +12,9 @@ cas = CAS(application, '/cas')
 cas.init_app(application)
 
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
+application.config['CAS_LOGIN_ROUTE'] = 'login'
 application.config['CAS_AFTER_LOGIN'] = 'index'
-application.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
+application.config['CAS_LOGOUT_ROUTE'] = 'cas_ng_logout'
 
 
 
