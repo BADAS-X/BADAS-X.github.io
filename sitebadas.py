@@ -12,9 +12,8 @@ application = Flask(__name__)
 cas.init_app(application)
 
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
-application.config['CAS_LOGIN_ROUTE'] = '/cas'
-#application.config['CAS_AFTER_LOGIN'] = 'index'
-#application.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
+application.config['CAS_AFTER_LOGIN'] = 'index'
+application.config['CAS_LOGOUT_ROUTE'] = '/cas/logout'
 
 
 
