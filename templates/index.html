@@ -25,9 +25,9 @@
                     <li class="connexion">
                 {% if session.username %}
                     Vous êtes connecté,</br>{{ session.username }}
-                    <a href="{{logout()}}">DÉCONNEXION</a>
+                    <a href="/logout">DÉCONNEXION</a>
                 {% else %}
-                    <a href="{{login()}}">CONNEXION</a>
+                    <a href="/login">CONNEXION</a>
                 {% endif %}
                 </li>
                 </ul>
