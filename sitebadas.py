@@ -14,7 +14,6 @@ cas.init_app(application)
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
 application.config['CAS_LOGIN_ROUTE'] = 'login'
 application.config['CAS_AFTER_LOGIN'] = 'index'
-application.config['CAS_LOGOUT_ROUTE'] = 'cas_ng_logout'
 
 
 
@@ -63,7 +62,8 @@ def index():
         reverse=True)
 
 
-    return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas)
+    return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
+    login=login,logout=logout)
 
 application.debug = True
 
