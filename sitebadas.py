@@ -7,8 +7,8 @@ from io import BytesIO
 from flask_cas import CAS, login_required
 import datetime
 
-cas = CAS(application, '/cas')
 application = Flask(__name__)
+cas = CAS(application, '/cas')
 cas.init_app(application)
 
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
