@@ -13,10 +13,8 @@ cas.init_app(application)
 
 application.config['SECRET_KEY'] = open("secret.key",'rb').read()
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
-application.config['CAS_LOGIN_ROUTE'] = 'login'
-application.config['CAS_AFTER_LOGIN'] = 'index'
-
-
+application.config['CAS_LOGIN_ROUTE'] = '/login'
+application.config['CAS_AFTER_LOGIN'] = '/index'
 
 import sqlite3
 application.config.from_object(__name__)
@@ -62,6 +60,5 @@ application.debug = True
 
 
 if __name__ == "__main__":
-    application.threaded = True
     application.debug = False
     application.run()

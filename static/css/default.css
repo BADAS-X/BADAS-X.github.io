@@ -59,6 +59,11 @@
 		line-height: 180%;
 	}
 
+	p a
+	{
+		text-decoration: none;
+	}
+
 	strong
 	{
 	}
