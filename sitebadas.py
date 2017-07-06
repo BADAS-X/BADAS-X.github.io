@@ -8,8 +8,8 @@ from flask_cas import CAS, login_required, login, logout
 import datetime
 
 application = Flask(__name__)
-cas = CAS(application, '/cas')
-
+cas = CAS()
+cas.init_app(application)
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
 application.config['CAS_LOGIN_ROUTE'] = 'login'
 application.config['CAS_AFTER_LOGIN'] = 'index'
