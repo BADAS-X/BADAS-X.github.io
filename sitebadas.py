@@ -11,20 +11,21 @@ application = Flask(__name__)
 cas = CAS(application, '/cas')
 cas.init_app(application)
 
-application.config['SECRET_KEY'] = open("secret.key",'rb').read()
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
-application.config['CAS_LOGIN_ROUTE'] = '/login'
-application.config['CAS_AFTER_LOGIN'] = '/index'
+application.config['CAS_LOGIN_ROUTE'] = 'login'
+application.config['CAS_AFTER_LOGIN'] = 'index'
 
 import sqlite3
 application.config.from_object(__name__)
 
-moisLettres = {
-    1:'janvier',2:'février',3:'mars',
-    4:'avril',5:'mai',6:'juin',
-    7:'juillet',8:'août',9:'septembre',
-    10:'octobre',11:'novembre',12:'décembre'
-}
+moisLettres = [
+    'janvier','février','mars',
+    'avril','mai','juin',
+    'juillet','août','septembre',
+    'octobre','novembre','décembre'
+]
+
+application.secret_key = open("secret.key",'rb').read()
 
 @application.route('/index')
 @application.route('/')
