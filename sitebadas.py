@@ -9,7 +9,6 @@ import datetime
 
 application = Flask(__name__)
 cas = CAS(application, '/cas')
-cas.init_app(application)
 
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
 application.config['CAS_LOGIN_ROUTE'] = 'login'
