@@ -1,5 +1,6 @@
 flask
 flask-cas
 flask-wtf
+bleach
 markdown
 google-api-python-client
