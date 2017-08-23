@@ -29,7 +29,8 @@ application.secret_key = open("secret.key",'rb').read()
 @application.route('/index')
 @application.route('/')
 def index():
-    md = markdown.Markdown(extensions=['markdown.extensions.meta'])
+    md = markdown.Markdown(extensions=['markdown.extensions.meta'],
+        safe_mode=True)
 
 
     aboutfile = open('about.md','r',encoding='utf-8')
