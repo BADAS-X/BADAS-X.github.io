@@ -1,4 +1,5 @@
 import markdown
+import bleach
 import glob
 from flask import Flask, request, escape, abort
 from flask import Markup
@@ -29,8 +30,7 @@ application.secret_key = open("secret.key",'rb').read()
 @application.route('/index')
 @application.route('/')
 def index():
-    md = markdown.Markdown(extensions=['markdown.extensions.meta'],
-        safe_mode=True)
+    md = markdown.Markdown(extensions=['markdown.extensions.meta'])
 
 
     aboutfile = open('about.md','r',encoding='utf-8')
@@ -45,7 +45,8 @@ def index():
                 md.convert(open(fil,'r',encoding='utf-8').read())
                 )
         curpost = md.Meta
-        curpost['html'] = html
+        curpost['html'] = bleach.clean(html,
+            tags= [u'a', u'abbr', u'acronym', u'b', u'blockquote', u'code', u'em', u'i', u'li', u'ol', u'strong', u'ul',u'iframe'])
         curpost['date'] = tuple(int(val) for val in (curpost['date'][0]).split('/'))
 
         posts.append(curpost)
