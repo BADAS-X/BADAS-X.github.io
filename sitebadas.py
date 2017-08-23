@@ -32,21 +32,25 @@ application.secret_key = open("secret.key",'rb').read()
 def index():
     md = markdown.Markdown(extensions=['markdown.extensions.meta'])
 
+    allowed_tags = ['a','abbr','b','br','blockquote','code','em','i','li','ol','pre','strong','ul','h1','h2','h3','h4','h5','h6','p','iframe']
+    
+    allowed_attr = bleach.sanitizer.ALLOWED_ATTRIBUTES
+    allowed_attr[u'iframe'] = [u'width',u'height',u'src',u'frameborder']
 
-    aboutfile = open('about.md','r',encoding='utf-8')
-    about = Markup(md.convert(aboutfile.read()))
+    
+    about_file = open('about.md','r',encoding='utf-8')
+    about = Markup(md.convert(about_file.read()))
     md.reset()
 
     posts = []
     for fil in glob.glob('posts/*.md'):
         md.reset()
 
-        html = Markup(
-                md.convert(open(fil,'r',encoding='utf-8').read())
-                )
+        html = bleach.clean(md.convert(open(fil,'r',encoding='utf-8').read()),
+                tags=allowed_tags)
         curpost = md.Meta
-        curpost['html'] = bleach.clean(html,
-            tags= [u'a', u'abbr', u'acronym', u'b', u'blockquote', u'code', u'em', u'i', u'li', u'ol', u'strong', u'ul',u'iframe'])
+       
+        curpost['html'] = Markup(html)
         curpost['date'] = tuple(int(val) for val in (curpost['date'][0]).split('/'))
 
         posts.append(curpost)
