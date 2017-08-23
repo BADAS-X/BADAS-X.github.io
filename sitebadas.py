@@ -12,8 +12,9 @@ application = Flask(__name__)
 cas = CAS()
 cas.init_app(application)
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
-application.config['CAS_LOGIN_ROUTE'] = 'login'
-application.config['CAS_AFTER_LOGIN'] = 'index'
+application.config['CAS_LOGIN_ROUTE'] = '/login'
+application.config['CAS_AFTER_LOGIN'] = '/index'
+
 
 import sqlite3
 application.config.from_object(__name__)
