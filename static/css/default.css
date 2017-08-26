@@ -481,7 +481,7 @@
 		padding: 1.4em 1.0em;
 		text-align: center;
 		text-decoration:  none;
-		text-transform: uppercase;
+		/* text-transform: uppercase;*/
 		font-weight: 700;
 		color: rgba(255,255,255,0.7);
 	}
