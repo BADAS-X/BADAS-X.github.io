@@ -1,6 +1,6 @@
 # À propos
 
-Le BADAS (*Binet Algorithmique et Data Science*) est une association étudiante de l'[École polytechnique](https://polytechnique.edu/) traitant d'informatique et plus précisément de *data science*.
+Le *Binet Algorithmique et Data Science* (BADaS) est une association étudiante de l'[École polytechnique](https://polytechnique.edu/) traitant d'informatique et plus précisément de *data science*.
 
 Notre objectif est de promouvoir l'informatique au sein de l'École polytechnique, en
 

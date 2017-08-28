@@ -1,5 +1,6 @@
 import markdown
 import bleach
+from bleach import sanitizer
 import glob
 from flask import Flask, request, escape, abort
 from flask import Markup
@@ -35,7 +36,7 @@ def index():
 
     allowed_tags = ['a','abbr','b','br','blockquote','code','em','i','li','ol','pre','strong','ul','h1','h2','h3','h4','h5','h6','p','iframe']
     
-    allowed_attr = bleach.sanitizer.ALLOWED_ATTRIBUTES
+    allowed_attr = sanitizer.ALLOWED_ATTRIBUTES
     allowed_attr[u'iframe'] = [u'width',u'height',u'src',u'frameborder']
 
     
@@ -52,7 +53,8 @@ def index():
         curpost = md.Meta
        
         curpost['html'] = Markup(html)
-        curpost['date'] = tuple(int(val) for val in (curpost['date'][0]).split('/'))
+        dd,mm,aaaa = tuple(curpost['date'][0].split('/'))
+        curpost['date'] = (int(dd),int(mm)-1,int(aaaa))
 
         posts.append(curpost)
 
