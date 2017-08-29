@@ -3,7 +3,7 @@ import bleach
 from bleach import sanitizer
 import glob
 from flask import Flask, request, escape, abort
-from flask import Markup
+from flask import Markup, flash
 from flask import url_for, render_template, redirect
 from io import BytesIO
 from flask_cas import CAS, login_required, login, logout
@@ -58,10 +58,8 @@ def index():
 
         posts.append(curpost)
 
-    sorted(posts, key=lambda pos: pos['date'],
-        reverse=True)
-
-
+    sorted(posts, key=lambda pos: pos['date'])
+    posts.reverse()
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
     login=login,logout=logout)
 

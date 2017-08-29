@@ -4,9 +4,12 @@
 {% block body %}
 <div id="page" class="container">
 	<div id="menu">
+        <div class="logo">
+			<img src="{{ url_for('static', filename='images/logo_BADAS.png') }}" />
+		</div>
 		<ul>
-			<li><a href="#welcome">accueil</a></li>
-			<li><a href="#apropos">à propos</a></li>
+			<li><a href="#page">accueil</a></li>
+			<li><a href="#about">à propos</a></li>
 			<li><a href="#news">actualités</a></li>
 			<li><a href="#newsletter">newsletter</a></li>
 			<li><a href="mailto:contact@badas.io">contact</a></li>
@@ -21,16 +24,12 @@
 			{% endif %}
 		</ul>
 	</div>
-	<div id="main">
-		<div class="logo">
-			<img src="{{ url_for('static', filename='images/logo_BADAS.png') }}" />
-			<br />
-		</div>
-		<div id="apropos">
+	<div class="main">
+		<div id="about" class='section'>
 			{{ about }}
 		</div>
 
-		<div id="news">
+		<div id="news" class='section'>
 				<h1>Actualités</h1>
 			<ul class="style1">
 				{% for conf in posts %}
@@ -46,7 +45,7 @@
 			</ul>
 		</div>
 
-		<div id="newsletter">
+		<div id="newsletter" class='section'>
 				<h1>Newsletter</h1>
 			<!-- Begin MailChimp Signup Form -->
 			<div id="mc_embed_signup">
