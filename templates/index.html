@@ -3,14 +3,20 @@
 
 {% block body %}
 <nav id="menu">
+    <div class="menu-container">
     <div class="logo">
-		<img src="{{ url_for('static', filename='images/logo_BADAS.png') }}" />
-		<div id="menuBtn"></div>
 	</div>
+    <div id="menuBtn"></div>
+    <script>
+    document.getElementById('menuBtn').onclick = function () {dropdown()};
+
+    function dropdown () {
+        document.getElementById('menuBtn').classList.toggle("click")
+    }
+    </script>
 	<ul>
-		<li><a href="#page">accueil</a></li>
+        <li><a href="#news">actualités</a></li>
 		<li><a href="#about">à propos</a></li>
-		<li><a href="#news">actualités</a></li>
 		<li><a href="#newsletter">newsletter</a></li>
 		<li><a href="mailto:contact@badas.io">contact</a></li>
 		{% if session.username %}
@@ -23,15 +29,12 @@
 		</li>
 		{% endif %}
 	</ul>
+</div>
 </nav>
 
 <div class="main">
-	<div id="about" class='section'>
-		{{ about }}
-	</div>
-
 	<div id="news" class='section'>
-			<h1>Actualités</h1>
+			<h1>actualités</h1>
 		<ul class="style1">
 			{% for conf in posts %}
 			<li>
@@ -46,8 +49,12 @@
 		</ul>
 	</div>
 
+    <div id="about" class='section'>
+		{{ about }}
+	</div>
+
 	<div id="newsletter" class='section'>
-			<h1>Newsletter</h1>
+			<h1>newsletter</h1>
 		<!-- Begin MailChimp Signup Form -->
 		<div id="mc_embed_signup">
 			<form action="//frankiz.us15.list-manage.com/subscribe/post?u=6dfc85780e63d900ba57ec48f&amp;id=174f974c4f&REF=Autre&OTHERREF=SITE" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

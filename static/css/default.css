@@ -2,14 +2,6 @@
 	box-sizing: border-box;
 }
 
-html, body {
-	min-height: 100%;
-}
-
-html {
-	width: 100%;
-}
-
 body {
 	margin-left: auto;
 	margin-right: auto;
@@ -18,7 +10,7 @@ body {
 	background: #202020;
 	font-family: 'Sans', sans-serif;
 	font-size: 12pt;
-	min-width: 200px;
+	min-width: 300px;
 	color: #444444;
 }
 
@@ -29,7 +21,12 @@ h1, h2, h3 {
 }
 
 h1 {
+	font-family: 'Source Sans Pro';
 	font-size: 2.8em;
+}
+
+ul, ol {
+	margin: 0;
 }
 
 p {
@@ -54,31 +51,44 @@ a:hover {
 	float: left;
 	margin: 0;
 	display: block;
-	width: 19%;
+	width: 20%;
 	z-index: 999;
 	height: 100%;
-	max-width: 15em;
-	overflow: auto;
+	max-width: 240px;
+	min-width: 160px;
 	background: #202020;
 	font-family: 'Source Sans Pro';
 }
 
+.menu-container {
+	position: fixed;
+	width: inherit;
+	min-width: inherit;
+	max-width: inherit;
+	margin: 0;
+	padding: 0;
+}
 
-.logo img {
-	max-width: 100%;
-	max-height: 100%;
-	margin: auto;
-	display: block;
+.logo {
+	display: inline-block;
+	width: 100%;
+	height: calc(80px + 2vmax);
+	background-image: url(/static/images/logo_BADAS.png);
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 
 #menu ul {
 	list-style: none;
+	position: relative;
+	top: 0;
 	margin: 0;
 	width: 100%;
 	padding-left: 0;
 	border-top: 2px solid rgba(200,160,0,0.25);
-	font-size: 1.2em;
+	font-size: calc(1.2em + 0.2vmax);
 }
 
 #menu li {
@@ -89,16 +99,12 @@ a:hover {
 	text-align: right;
 	border-bottom: 1px solid rgba(255,255,255,0.08);
 	background-color: rgba(0,0,0,0);
-	transition: all 0.3s;
+	transition: background-color 0.3s;
 }
 
 #menu li a, #menu li span {
-	font-weight: 700;
+	font-weight: 600;
 	color: rgba(255,255,255,0.7);
-}
-
-#menu li:last-child {
-	border-bottom: none;
 }
 
 #menu li a:hover {
@@ -117,11 +123,12 @@ a:hover {
 	position: fixed;
 	top: 30px;
 	left: 30px;
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 	z-index: 2;
 	background-image: url(/static/images/menu-button.png);
-	background-size: 40px 40px;
+	background-size: 30px 30px;
+	transition: background-image 0.1s linear;
 }
 
 @media only screen and (max-width: 600px) {
@@ -131,57 +138,61 @@ a:hover {
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: auto;
+		height: 90px;
+		max-width: inherit;
 		background: none;
-		max-width: 100%;
 	}
 
 	#menuBtn {
 		visibility: visible;
 	}
 
-	.logo:hover #menuBtn {
+	#menuBtn.click {
 		background-image: url(/static/images/cancel.png);
-		background-size: 40px 40px;
+		background-size: 30px 30px;
+		transition: background-image 0.1s linear;
 	}
 
 	.logo {
-		max-height: 100px;
+		height: 90px;
+		width: 100%;
 		background: #202020;
-	}
-
-	.logo img {
-		max-width: 100%;
-		max-height: 100%;
-		height: 100%;
+		background-image: url(/static/images/logo_BADAS.png);
+		background-size: auto 100%, cover;
+		background-repeat: no-repeat, no-repeat;
+		background-position: center, center;
 	}
 
 	#menu ul {
-		display: inline-block;
-		width: 100px;
+		display: block;
 		visibility: hidden;
 		opacity: 0;
-		transition: opacity 2s;
-		transition: width 0.2s;
+		transition: opacity 0.1s;
 	}
 
 	#menu li {
+		display: inline-block;
 		text-align: center;
-		padding-top: 0.4em;
+		padding-right: 0;
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+	}
+
+	#menu li:last-child {
+		border-bottom: none;
 	}
 
 	#menu li a {
 		margin-top: auto;
 		margin-bottom: auto;
+		font-weight: 400;
 	}
 
-	#menu .logo:hover + ul, #menu ul:hover {
+	#menuBtn.click ~ ul, #menu ul:hover {
 		visibility: visible;
 		background: #202020;
 		opacity: 1;
-		transition: opacity 2s;
-		width: 140px;
-		transition: width 0.5s;
+		transition: opacity 0.1s;
 	}
 }
 
@@ -193,14 +204,16 @@ a:hover {
 	overflow: hidden;
 	position: relative;
 	padding: 0 3em 1em 3em;
+	margin: auto;
 	background: #FFF;
 	text-align: justify;
 }
 
 @media only screen and (max-width: 600px) {
 	.main {
-		padding: 1.5em 1.5em;
-		margin-top: 100px;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		margin-top: 90px;
 	}
 }
 
@@ -223,11 +236,12 @@ a:hover {
 }
 
 .section ul {
-	margin-left: 15px;
 	text-align: justify;
+	padding-left: 1em;
 	list-style-type: circle;
-	list-style-position: inside;
+	list-style-position: outside;
 }
+
 
 /************************/
 /* List Styles          */
@@ -238,8 +252,7 @@ ul.style1 {
 	margin-top: 0;
 	margin-left: auto;
 	margin-right: auto;
-	width: 95%;
-	max-width: 800px;
+	max-width: 640px;
 	padding-right: 0;
 	padding-left: 0;
 	overflow: hidden;
@@ -271,13 +284,16 @@ ul.style1 p {
 }
 
 ul.style1 h3 {
-	padding: 1em 0em 5px 115px;
+	padding: 1em 0em 5px 90px;
 	text-transform: uppercase;
 	text-align: justify;
 	font-size: 1em;
 	font-weight: 400;
 }
 
+ul.style1 p {
+    padding-left: 90px;
+}
 
 ul.style1 .date {
 	float: left;
@@ -306,10 +322,6 @@ ul.style1 .date:after {
 	width: 100%;
 	height: 100%;
 	border-radius: 6px;
-}
-
-.style1 p {
-    padding-left: 115px;
 }
 
 ul.style1 .date b {
@@ -373,34 +385,6 @@ ul.contact li a.icon-dribbble:before { background: #C4376B;	}
 ul.contact li a.icon-tumblr:before { background: #31516A; }
 ul.contact li a.icon-rss:before { background: #F2600B; }
 
-/*********************/
-/* Button Style   */
-/********************************/
-
-.button {
-	display: inline-block;
-	padding: 1em 3em 1em 2em;
-	letter-spacing: 0.20em;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-weight: 400;
-	font-size: 0.90em;
-	color: #FFF;
-}
-
-.button:before
-{
-	display: inline-block;
-	background: #FFC31F;
-	margin-right: 1em;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	border-radius: 20px;
-	text-align: center;
-	color: #272925;
-}
-
 
 /*********************************/
 /* Vidéos
@@ -415,7 +399,6 @@ iframe {
 	max-width: 480px;
 }
 
-
 /******************
 /* Footer         */
 /*********************/
@@ -423,9 +406,6 @@ iframe {
 #logoX img {
 	display: block;
 	margin: auto auto;
-}
-
-#footer {
 }
 
 /**********************/
@@ -451,10 +431,4 @@ iframe {
 #copyright a {
 	text-decoration: none;
 	color: rgba(0,30,150,0.9);
-}
-
-.fa {
-	display: block;
-	color: #000;
-	background: red;
 }
