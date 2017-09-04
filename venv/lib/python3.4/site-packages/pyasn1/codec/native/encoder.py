@@ -24,10 +24,10 @@ class AbstractItemEncoder(object):
 class ExplicitlyTaggedItemEncoder(AbstractItemEncoder):
     def encode(self, encodeFun, value):
         if isinstance(value, base.AbstractConstructedAsn1Item):
-            value = value.clone(tagSet=value.getTagSet()[:-1],
+            value = value.clone(tagSet=value.tagSet[:-1],
                                 cloneValueFlag=1)
         else:
-            value = value.clone(tagSet=value.getTagSet()[:-1])
+            value = value.clone(tagSet=value.tagSet[:-1])
         return encodeFun(value)
 
 explicitlyTaggedItemEncoder = ExplicitlyTaggedItemEncoder()
@@ -76,11 +76,11 @@ class RealEncoder(AbstractItemEncoder):
 class SetEncoder(AbstractItemEncoder):
     protoDict = dict
     def encode(self, encodeFun, value):
-        value.setDefaultComponents()
         value.verifySizeSpec()
+        namedTypes = value.componentType
         substrate = self.protoDict()
-        for key, subValue in value.items():
-            if subValue is None:  # Optional component
+        for idx, (key, subValue) in enumerate(value.items()):
+            if namedTypes[idx].isOptional and not value[idx].isValue:
                 continue
             substrate[key] = encodeFun(subValue)
         return substrate
@@ -159,10 +159,14 @@ class Encoder(object):
             raise error.PyAsn1Error('value is not valid (should be an instance of an ASN.1 Item)')
 
         if debug.logger & debug.flagEncoder:
+            logger = debug.logger
+        else:
+            logger = None
+        if logger:
             debug.scope.push(type(asn1Value).__name__)
-            debug.logger('encoder called for type %s <%s>' % (type(asn1Value).__name__, asn1Value.prettyPrint()))
+            logger('encoder called for type %s <%s>' % (type(asn1Value).__name__, asn1Value.prettyPrint()))
 
-        tagSet = asn1Value.getTagSet()
+        tagSet = asn1Value.tagSet
         if len(tagSet) > 1:
             concreteEncoder = explicitlyTaggedItemEncoder
         else:
@@ -177,12 +181,13 @@ class Encoder(object):
                 else:
                     raise error.PyAsn1Error('No encoder for %s' % (asn1Value,))
 
-        debug.logger & debug.flagEncoder and debug.logger('using value codec %s chosen by %s' % (type(concreteEncoder).__name__, tagSet))
+        if logger:
+            logger('using value codec %s chosen by %s' % (type(concreteEncoder).__name__, tagSet))
 
         pyObject = concreteEncoder.encode(self, asn1Value)
 
-        if debug.logger & debug.flagEncoder:
-            debug.logger('encoder %s produced: %s' % (type(concreteEncoder).__name__, repr(pyObject)))
+        if logger:
+            logger('encoder %s produced: %s' % (type(concreteEncoder).__name__, repr(pyObject)))
             debug.scope.pop()
 
         return pyObject
