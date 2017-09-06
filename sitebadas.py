@@ -21,10 +21,10 @@ import sqlite3
 application.config.from_object(__name__)
 
 moisLettres = [
-    'janvier','février','mars',
-    'avril','mai','juin',
-    'juillet','août','septembre',
-    'octobre','novembre','décembre'
+    'jan','fév','mars',
+    'avr','mai','juin',
+    'jui','août','sep',
+    'oct','nov','déc'
 ]
 
 application.secret_key = open("secret.key",'rb').read()
@@ -34,11 +34,11 @@ application.secret_key = open("secret.key",'rb').read()
 def index():
     md = markdown.Markdown(extensions=['markdown.extensions.meta'])
 
-    allowed_tags = ['a','abbr','b','br','blockquote','code','em','i','li','ol','pre','strong','ul','h1','h2','h3','h4','h5','h6','p','iframe']
+    allowed_tags = ['a','abbr','b','br','blockquote','code','em','i','img','li','ol','pre','strong','ul','h1','h2','h3','h4','h5','h6','p','iframe']
 
     allowed_attr = sanitizer.ALLOWED_ATTRIBUTES
     allowed_attr[u'iframe'] = [u'width',u'height',u'src',u'frameborder']
-
+    allowed_attr[u'img'] = [u'width',u'height',u'src']
 
     about_file = open('about.md','r',encoding='utf-8')
     about = Markup(md.convert(about_file.read()))

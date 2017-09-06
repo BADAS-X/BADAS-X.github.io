@@ -229,6 +229,7 @@ a:hover {
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 .section:first-child {
@@ -242,6 +243,15 @@ a:hover {
 	list-style-position: outside;
 }
 
+.section img {
+	display: block;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 70%;
+	width: auto;
+	height: auto;
+}
 
 /************************/
 /* List Styles          */
