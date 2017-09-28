@@ -2,23 +2,27 @@ import markdown
 import bleach
 from bleach import sanitizer
 import glob
-from flask import Flask, request, escape, abort
-from flask import Markup, flash
-from flask import url_for, render_template, redirect
-from io import BytesIO
+from flask import Flask, request, escape, abort, Markup, flash, g, url_for, render_template, redirect
+from flask_babel import Babel
 from flask_cas import CAS, login_required, login, logout
-import datetime
+from models import BaseConfig
 
 application = Flask(__name__)
-cas = CAS()
-cas.init_app(application)
+cas = CAS(application)
+babel = Babel(application)
 application.config['CAS_SERVER'] = "https://cas.binets.fr/"
 application.config['CAS_LOGIN_ROUTE'] = '/login'
 application.config['CAS_AFTER_LOGIN'] = '/index'
 
+application.config.from_object(BaseConfig)
+application.secret_key = open("secret.key",'rb').read()
 
-import sqlite3
-application.config.from_object(__name__)
+
+@babel.localeselector
+def get_locale():
+    return g.get('lang_code',app.config['BABEL_DEFAULT_LOCALE'])
+
+moisLettres = list()
 
 moisLettres = [
     'jan','fév','mars',
@@ -27,7 +31,23 @@ moisLettres = [
     'oct','nov','déc'
 ]
 
-application.secret_key = open("secret.key",'rb').read()
+@application.url_defaults
+def set_lang_code(endpoint, values):
+    if 'lang_code' in values or not g.get('lang_code',None):
+        return
+    if app.url_map.is_endpoint_expecting(endpoint,'lang_code'):
+        values['lang_code'] = g.lang_code
+
+@application.url_value_preprocessor
+def get_lang_code(endpoint, values):
+    if values is not None:
+        g.lang_code = values.pop('lang_code', None)
+
+@application.before_request
+def ensure_lang_support():
+    lang_code = g.get('lang_code', None)
+    if lang_code and lang_code not in app.config['SUPPORTED_LANGUAGES'].keys():
+        return abort(404)
 
 @application.route('/index')
 @application.route('/')
