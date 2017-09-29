@@ -1,0 +1,7 @@
+flask
+flask-cas
+flask-wtf
+flask-babel
+bleach
+markdown
+google-api-python-client

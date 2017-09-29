@@ -1,0 +1,444 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	background: #202020;
+	font-family: 'Sans', sans-serif;
+	font-size: 12pt;
+	min-width: 300px;
+	color: #444444;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-weight: 600;
+}
+
+h1 {
+	font-family: 'Source Sans Pro';
+	font-size: 2.8em;
+}
+
+ul, ol {
+	margin: 0;
+}
+
+p {
+	line-height: 110%;
+}
+
+a {
+	color: #2980b9;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #479fd8;
+}
+
+/****************************/
+/* Menu                */
+/****************************/
+
+#menu {
+	float: left;
+	margin: 0;
+	display: block;
+	width: 20%;
+	z-index: 999;
+	height: 100%;
+	max-width: 240px;
+	min-width: 160px;
+	background: #202020;
+	font-family: 'Source Sans Pro';
+}
+
+.menu-container {
+	position: fixed;
+	width: inherit;
+	min-width: inherit;
+	max-width: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+.logo {
+	display: inline-block;
+	width: 100%;
+	height: calc(80px + 2vmax);
+	background-image: url(/static/images/logo_BADAS.png);
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+#menu ul {
+	list-style: none;
+	position: relative;
+	top: 0;
+	margin: 0;
+	width: 100%;
+	padding-left: 0;
+	border-top: 2px solid rgba(200,160,0,0.25);
+	font-size: calc(1.2em + 0.2vmax);
+}
+
+#menu li {
+	width: 100%;
+	display: block;
+	padding-right: 0.4em;
+	padding-top: 0.8em;
+	text-align: right;
+	border-bottom: 1px solid rgba(255,255,255,0.08);
+	background-color: rgba(0,0,0,0);
+	transition: background-color 0.3s;
+}
+
+#menu li a, #menu li span {
+	font-weight: 600;
+	color: rgba(255,255,255,0.7);
+}
+
+#menu li a:hover {
+	color: rgba(255,255,255,1);
+}
+
+
+#menu li:hover {
+	background-color: rgba(240,140,0,0.15);
+	transition: all 0.4s;
+}
+
+#menuBtn {
+	display: block;
+	visibility: hidden;
+	position: fixed;
+	top: 30px;
+	left: 30px;
+	height: 30px;
+	width: 30px;
+	z-index: 2;
+	background-image: url(/static/images/menu-button.png);
+	background-size: 30px 30px;
+	transition: background-image 0.1s linear;
+}
+
+@media only screen and (max-width: 600px) {
+	/* For mobile */
+	#menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 90px;
+		max-width: inherit;
+		background: none;
+	}
+
+	#menuBtn {
+		visibility: visible;
+	}
+
+	#menuBtn.click {
+		background-image: url(/static/images/cancel.png);
+		background-size: 30px 30px;
+		transition: background-image 0.1s linear;
+	}
+
+	.logo {
+		height: 90px;
+		width: 100%;
+		background: #202020;
+		background-image: url(/static/images/logo_BADAS.png);
+		background-size: auto 100%, cover;
+		background-repeat: no-repeat, no-repeat;
+		background-position: center, center;
+	}
+
+	#menu ul {
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity 0.1s;
+	}
+
+	#menu li {
+		display: inline-block;
+		text-align: center;
+		padding-right: 0;
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+	}
+
+	#menu li:last-child {
+		border-bottom: none;
+	}
+
+	#menu li a {
+		margin-top: auto;
+		margin-bottom: auto;
+		font-weight: 400;
+	}
+
+	#menuBtn.click ~ ul, #menu ul:hover {
+		visibility: visible;
+		background: #202020;
+		opacity: 1;
+		transition: opacity 0.1s;
+	}
+}
+
+/***************************/
+/* Main                    */
+/***************************/
+
+.main {
+	overflow: hidden;
+	position: relative;
+	padding: 0 3em 1em 3em;
+	margin: auto;
+	background: #FFF;
+	text-align: justify;
+}
+
+@media only screen and (max-width: 600px) {
+	.main {
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		margin-top: 90px;
+	}
+}
+
+.main h1, h2, h3 {
+	text-align: center;
+	padding-bottom: 18px;
+}
+
+.section {
+	border-bottom: 3px solid rgba(220,180,0,.6);
+	overflow: hidden;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.section:first-child {
+	margin-top: 2em;
+}
+
+.section ul {
+	text-align: justify;
+	padding-left: 1em;
+	list-style-type: circle;
+	list-style-position: outside;
+}
+
+.section img {
+	display: block;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 70%;
+	width: auto;
+	height: auto;
+}
+
+/************************/
+/* List Styles          */
+/************************/
+
+ul.style1 {
+	display: block;
+	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 640px;
+	padding-right: 0;
+	padding-left: 0;
+	overflow: hidden;
+	list-style: none;
+}
+
+ul.style1 li {
+	padding: 1.6em 0em 0em 0em;
+	margin: 0 0 2.5em 0;
+	border-top: 1px solid rgba(0,0,0,.1);
+}
+
+ul.style1 li:first-child {
+	border-top: none;
+}
+
+ul.style1 p {
+	margin: 0;
+}
+
+.date {
+	display: block;
+	text-decoration: none;
+	color: #2D2D2D;
+}
+
+.date a:hover {
+	text-decoration: underline;
+}
+
+ul.style1 h3 {
+	padding: 1em 0em 5px 90px;
+	text-transform: uppercase;
+	text-align: justify;
+	font-size: 1em;
+	font-weight: 400;
+}
+
+ul.style1 p {
+    padding-left: 90px;
+}
+
+ul.style1 .date {
+	float: left;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	margin: 0;
+	margin-bottom: 0.5em;
+	padding: 1.5em 0em 1.5em 0em;
+	box-shadow: 0px 0px 0px 5px rgba(255,255,255,0.1);
+	line-height: normal;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 0px rgba(0,0,0,.2);
+	font-size: 1em;
+	font-weight: 400;
+	border-right: 1px solid rgba(0,0,0,.1);
+}
+
+ul.style1 .date:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 6px;
+}
+
+ul.style1 .date b {
+	margin: 0;
+	padding: 0;
+	display: block;
+	margin-top: -5px;
+	font-size: 1.8em;
+	font-weight: 700;
+}
+
+ul.style1 .date a
+{
+}
+
+ul.style1 .date a:hover {
+	text-decoration: none;
+}
+
+
+/*********************************/
+/* Social Icon Styles      */
+/*********************************/
+
+ul.contact {
+	margin: 0;
+	padding: 2em 0em 0em 0em;
+	list-style: none;
+}
+
+ul.contact li {
+	display: inline-block;
+	padding: 0em 0.30em;
+	font-size: 1em;
+}
+
+ul.contact li span {
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.contact li a {
+	color: #FFF;
+}
+
+ul.contact li a:before {
+	display: inline-block;
+	background: #3f3f3f;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+ul.contact li a.icon-twitter:before { background: #2DAAE4; }
+ul.contact li a.icon-facebook:before { background: #39599F; }
+ul.contact li a.icon-dribbble:before { background: #C4376B;	}
+ul.contact li a.icon-tumblr:before { background: #31516A; }
+ul.contact li a.icon-rss:before { background: #F2600B; }
+
+
+/*********************************/
+/* Vidéos
+/*********************************/
+
+iframe {
+	width: 100%;
+	margin-top: 1em;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 480px;
+}
+
+/******************
+/* Footer         */
+/*********************/
+
+#logoX img {
+	display: block;
+	margin: auto auto;
+}
+
+/**********************/
+/* Copyright          */
+/**********************/
+
+#copyright {
+	overflow: hidden;
+	border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+#copyright span {
+	display: block;
+	padding-top: 1em;
+	letter-spacing: 0.20em;
+	line-height: 2.5em;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 0.6em;
+	color: rgba(0,0,0,0.7);
+}
+
+#copyright a {
+	text-decoration: none;
+	color: rgba(0,30,150,0.9);
+}
