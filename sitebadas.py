@@ -7,22 +7,16 @@ from flask_babel import Babel
 from flask_cas import CAS, login_required, login, logout
 from models import BaseConfig
 
+
 application = Flask(__name__)
 cas = CAS(application)
 babel = Babel(application)
-application.config['CAS_SERVER'] = "https://cas.binets.fr/"
-application.config['CAS_LOGIN_ROUTE'] = '/login'
-application.config['CAS_AFTER_LOGIN'] = '/index'
-
-application.config.from_object(BaseConfig)
 application.secret_key = open("secret.key",'rb').read()
-
+application.config.from_object(BaseConfig)
 
 @babel.localeselector
 def get_locale():
     return g.get('lang_code',app.config['BABEL_DEFAULT_LOCALE'])
-
-moisLettres = list()
 
 moisLettres = [
     'jan','fév','mars',
@@ -49,8 +43,8 @@ def ensure_lang_support():
     if lang_code and lang_code not in app.config['SUPPORTED_LANGUAGES'].keys():
         return abort(404)
 
-@application.route('/index')
-@application.route('/')
+@application.route('/fr', endpoint="index_fr")
+@application.route('/en', endpoint="index_en")
 def index():
     md = markdown.Markdown(extensions=['markdown.extensions.meta'])
 
@@ -81,8 +75,6 @@ def index():
     sorted(posts, key=lambda pos: pos['date'])
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
     login=login,logout=logout)
-
-application.debug = True
 
 
 if __name__ == "__main__":
