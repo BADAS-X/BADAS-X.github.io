@@ -59,7 +59,7 @@ def index():
         dd,mm,aaaa = tuple(curpost['date'][0].split('/'))
         curpost['date'] = (int(dd),int(mm)-1,int(aaaa))
 
-        posts.applicationend(curpost)
+        posts.append(curpost)
 
     sorted(posts, key=lambda pos: pos['date'])
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
