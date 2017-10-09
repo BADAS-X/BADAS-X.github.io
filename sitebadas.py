@@ -7,19 +7,20 @@ from flask_babel import Babel, gettext
 from flask_cas import CAS, login_required, login, logout
 from models import BabelConfig
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-app.secret_key = open("secret.key",'rb').read()
+application.secret_key = open("secret.key",'rb').read()
 
-cas = CAS(app)
-babel = Babel(app)
-app.config.from_object(BabelConfig)
+cas = CAS(application)
+babel = Babel(application)
+application.config.from_object(BabelConfig)
 
 
 @babel.localeselector
 def get_locale():
-    'return request.accept_languages.best_match(BabelConfig.SUPPORTED_LANGUAGES.keys())'
-    return 'en'
+    browser = request.accept_languages.best_match(BabelConfig.SUPPORTED_LANGUAGES.keys())
+    return browser
+
 
 moisLettres = [
     'jan','fév','mars',
@@ -30,7 +31,7 @@ moisLettres = [
 
 
 
-@app.route('/')
+@application.route('/')
 def index():
     CONTENT_PATH = "content/" + get_locale() + "/"
 
@@ -58,7 +59,7 @@ def index():
         dd,mm,aaaa = tuple(curpost['date'][0].split('/'))
         curpost['date'] = (int(dd),int(mm)-1,int(aaaa))
 
-        posts.append(curpost)
+        posts.applicationend(curpost)
 
     sorted(posts, key=lambda pos: pos['date'])
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
@@ -66,5 +67,5 @@ def index():
 
 
 if __name__ == "__main__":
-    app.debug = False
-    app.run()
+    application.debug = False
+    application.run()
