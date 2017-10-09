@@ -1,0 +1,44 @@
+# English translations for PROJECT.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-10-10 00:00+0200\n"
+"PO-Revision-Date: 2017-10-10 00:18+0200\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 2.0.4\n"
+
+#: templates/index.html:17 templates/index.html:37
+msgid "actualités"
+msgstr "news"
+
+#: templates/index.html:18
+msgid "à propos"
+msgstr "about us"
+
+#: templates/index.html:19
+msgid "newsletter"
+msgstr "newsletter"
+
+#: templates/index.html:20
+msgid "contact"
+msgstr "contact us"
+
+#: templates/index.html:24
+msgid "déconnexion"
+msgstr "log out"
+
+#: templates/index.html:28
+msgid "connexion"
+msgstr "log in"
