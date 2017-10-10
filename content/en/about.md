@@ -12,4 +12,4 @@ Our goal is to promote computer and data science within the École polytechnique
 * meeting with companies in order to open up on-site visits, partnerships for [Group Projects](https://www.polytechnique.edu/en/project-based-learning) or internships.
 
 
-For any enquiry, join us at [contact@badas.io](mailto:contact@badas.io)
+For any enquiry, contact us at [contact@badas.io](mailto:contact@badas.io)
