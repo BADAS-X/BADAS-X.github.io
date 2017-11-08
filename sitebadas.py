@@ -61,7 +61,7 @@ def index():
 
         posts.append(curpost)
 
-    sorted(posts, key=lambda pos: pos['date'])
+    posts.sort(key=lambda pos: pos['date'])
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
     login=login,logout=logout)
 
