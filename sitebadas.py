@@ -56,12 +56,12 @@ def index():
         curpost = md.Meta
 
         curpost['html'] = Markup(html)
-        dd,mm,aaaa = tuple(curpost['date'][0].split('/'))
-        curpost['date'] = (int(dd),int(mm)-1,int(aaaa))
+        dd,mm,aaaa = map(int, curpost['date'][0].split('/'))
+        curpost['date'] = (aaaa, mm - 1, dd)
 
         posts.append(curpost)
 
-    posts.sort(key=lambda pos: pos['date'])
+    posts.sort(key=lambda pos: pos['date'], reverse=True)
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
     login=login,logout=logout)
 
