@@ -19,6 +19,8 @@ application.config.from_object(BabelConfig)
 @babel.localeselector
 def get_locale():
     browser = request.accept_languages.best_match(BabelConfig.SUPPORTED_LANGUAGES.keys())
+    if browser is None:
+        return 'en'
     return browser
 
 
