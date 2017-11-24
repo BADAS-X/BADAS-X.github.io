@@ -39,7 +39,7 @@
 			{% for conf in posts %}
 			<li>
 				<p class="date">
-					{% set jj,mm,aaaa = conf['date'] %}
+					{% set aaaa,mm,jj = conf['date'] %}
 					<b>{{ jj }}</b>
 					{{ moisLettres[mm] }}
 				</p>

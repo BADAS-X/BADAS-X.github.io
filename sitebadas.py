@@ -19,6 +19,8 @@ application.config.from_object(BabelConfig)
 @babel.localeselector
 def get_locale():
     browser = request.accept_languages.best_match(BabelConfig.SUPPORTED_LANGUAGES.keys())
+    if browser is None:
+        return 'en'
     return browser
 
 
@@ -56,12 +58,12 @@ def index():
         curpost = md.Meta
 
         curpost['html'] = Markup(html)
-        dd,mm,aaaa = tuple(curpost['date'][0].split('/'))
-        curpost['date'] = (int(dd),int(mm)-1,int(aaaa))
+        dd,mm,aaaa = map(int, curpost['date'][0].split('/'))
+        curpost['date'] = (aaaa, mm - 1, dd)
 
         posts.append(curpost)
 
-    sorted(posts, key=lambda pos: pos['date'])
+    posts.sort(key=lambda pos: pos['date'], reverse=True)
     return render_template("/index.html", about=about, posts=posts, moisLettres=moisLettres, session=cas,
     login=login,logout=logout)
 
