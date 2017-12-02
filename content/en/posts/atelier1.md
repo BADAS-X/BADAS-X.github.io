@@ -7,6 +7,6 @@ On Wednesday Nov. 29th, BADAS and _Grande École Pourquoi Pas Moi ?_ (GEPPM) are
 
 BADAS members will be there to help the students learn the basics of [Python](https://python.org).
 
-Here are the [slides](https://www.badas.io/static/slides%20GEPPM.pdf) and the [code](https://www.badas.io/static/GEPPM.zip) (all in french).
+Here are the [slides](https://www.badas.io/static/slides%20GEPPM.pdf) and the [code](https://www.badas.io/static/GEPPM.zip) (all in french). The complete code is available on [Github](https://github.com/BADAS-X/movielens).
 
 <img src="/static/images/geppm_logo.png">

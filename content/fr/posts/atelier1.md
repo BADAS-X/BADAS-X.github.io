@@ -7,6 +7,6 @@ Le mercredi 29 novembre à 18h, le BADAS s'allie avec _Grande École Pourquoi Pa
 
 Des membres du BADAS seront là pour enseigner aux élèves les bases de la programmation avec [Python](https://python.org).
 
-Retrouvez les [slides](https://www.badas.io/static/slides%20GEPPM.pdf) et le [code](https://www.badas.io/static/GEPPM.zip).
+Retrouvez les [slides](https://www.badas.io/static/slides%20GEPPM.pdf) et le [code à télécharger](https://www.badas.io/static/GEPPM.zip). Le code complet se trouve sur [Github](https://github.com/BADAS-X/movielens).
 
 <img src="/static/images/geppm_logo.png">
