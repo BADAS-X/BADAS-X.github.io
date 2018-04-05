@@ -8,21 +8,21 @@ from flask_cas import CAS, login_required, login, logout
 from models import BabelConfig
 
 application = Flask(__name__)
+application.secret_key = open("secret.key",'r').read()
 
-application.secret_key = open("secret.key",'rb').read()
-
-cas = CAS(application)
+cas = CAS(application, '/login')
 babel = Babel(application)
+application.config['CAS_AFTER_LOGIN'] = "/"
+application.config['CAS_SERVER'] = "https://cas.binets.fr/"
 application.config.from_object(BabelConfig)
 
 
 @babel.localeselector
 def get_locale():
     browser = request.accept_languages.best_match(BabelConfig.SUPPORTED_LANGUAGES.keys())
-    if browser is None:
-        return 'en'
-    return browser
-
+    return 'fr'
+    if not(browser is None):
+        return browser
 
 moisLettres = [
     'jan','fév','mars',

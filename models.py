@@ -3,4 +3,4 @@ class BabelConfig(object):
     'fr':'French',
     'en':'English'
     }
-    DEFAULT_LANGUAGE = 'en'
+    DEFAULT_LANGUAGE = 'fr'

@@ -1,5 +1,6 @@
 venv
 .swp
+.vscode
 secret.key
 client_secret.json
 __pycache__
